@@ -25,10 +25,9 @@ public class PlotScript : MonoBehaviour
         
         var randomFloat = Random.Range(0.0f, 100.0f);
 
-        if (weedPlantProbability >= randomFloat)
-        {
-            currentPlant = Instantiate(GameHandler.Instance.weedPlant, transform);
-        }
+        if (weedPlantProbability < randomFloat) return;
+        
+        Plant(GameHandler.Instance.weedPlant);
     }
 
     private void Update()
@@ -69,11 +68,16 @@ public class PlotScript : MonoBehaviour
             Debug.LogWarning("Invalid seed!");
             return;
         }
-            
-        currentPlant = Instantiate(foundPlant, transform);
+        
+        Plant(foundPlant);
     }
     
     // Custom methods
+    private void Plant(GameObject plant)
+    {
+        currentPlant = Instantiate(plant, transform);
+    }
+    
     private void Water()
     {
         isWatered = true;
