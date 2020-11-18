@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Plot
+    uniqueID: 239823555
+    locked: 0
+  - name: Plant
+    uniqueID: 1979626233
+    locked: 0
+  - name: Particles
+    uniqueID: 1805582305
+    locked: 0
+  - name: UI
+    uniqueID: 4230424075
+    locked: 0

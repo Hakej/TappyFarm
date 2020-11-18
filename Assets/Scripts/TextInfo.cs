@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Classes.Enums;
 using UnityEngine;
 
 public class TextInfo : MonoBehaviour
@@ -12,34 +13,38 @@ public class TextInfo : MonoBehaviour
 
     // Update is called once per frame
     private void Update()
-    {
+    {/*
         if (gameObject.name == "sunflowerTxt")
         {
-            GetComponent<TextMesh>().text = $"Sunflower Seeds: {GMScript.sunFlowerSeeds}";
+            GetComponent<TextMesh>().text = $"Sunflower Seeds: {GameHandlerScript.sunFlowerSeeds}";
         }
         else if (gameObject.name == "carrotTxt")
         {
-            GetComponent<TextMesh>().text = $"Carrot Seeds: {GMScript.carrotSeeds}";
+            GetComponent<TextMesh>().text = $"Carrot Seeds: {GameHandlerScript.carrotSeeds}";
         }
         else if (gameObject.name == "potatoTxt")
         {
-            GetComponent<TextMesh>().text = $"Potato Seeds: {GMScript.potatoSeeds}";
+            GetComponent<TextMesh>().text = $"Potato Seeds: {GameHandlerScript.potatoSeeds}";
         }
+        */
     }
 
     private void OnMouseDown()
-    {
-        if (gameObject.name == "sunflowerTxt")
+    {/*
+        GameHandler.currentTool.type = ToolType.Seeds;
+
+        switch (gameObject.name)
         {
-            GMScript.currentTool = "sunflower";
+            case "sunflowerTxt":
+                GameHandler.currentTool.name = "SunflowerPlant";
+                break;
+            case "carrotTxt":
+                GameHandler.currentTool.name = "carrot";
+                break;
+            case "potatoTxt":
+                GameHandler.currentTool.name = "potato";
+                break;
         }
-        else if (gameObject.name == "carrotTxt")
-        {
-            GMScript.currentTool = "carrot";
-        }
-        else if (gameObject.name == "potatoTxt")
-        {
-            GMScript.currentTool = "potato";
-        }
+        */
     }
 }
