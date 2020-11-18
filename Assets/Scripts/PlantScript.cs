@@ -1,3 +1,5 @@
+using Classes.Enums;
+using Classes.UnityExtensions;
 using UnityEngine;
 
 public class PlantScript : MonoBehaviour
@@ -13,19 +15,30 @@ public class PlantScript : MonoBehaviour
 
     private Vector2 _currentScale;
     private Vector2 _grownScale;
+
+    private Collider2D _collider2D;
     
     // Events
     private void Start()
     {
+        _collider2D = GetComponent<Collider2D>();
         _plotScript = GetComponentInParent<PlotScript>();
-        
+
         _currentScale = new Vector2(0.0f, 0.0f);
         _grownScale = transform.localScale;
+        
+        transform.localScale = _currentScale;
     }
 
     private void Update()
     {
-        if (_isGrown) return;
+        if (_isGrown)
+        {
+            if (!RaycastInput.IsLMBDownColliding(_collider2D)) return;
+
+            Gather();
+            return;
+        }
 
         transform.localScale = Vector2.Lerp(_currentScale, _grownScale, _currentGrowTime / growTime);
         
@@ -37,14 +50,6 @@ public class PlantScript : MonoBehaviour
         
         Grow();
     }
-    
-    private void OnMouseDown()
-    {
-        if (!_isGrown) return;
-        
-        Gather();
-    }
-
 
     // Custom methods
     private void Grow()
@@ -55,6 +60,8 @@ public class PlantScript : MonoBehaviour
     
     private void Gather()
     {
+        if (GameHandler.Instance.currentTool.type != ToolType.None) return;
+        
         Destroy(gameObject);
     }
 }

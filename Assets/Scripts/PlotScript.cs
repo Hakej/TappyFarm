@@ -1,4 +1,5 @@
 ﻿using Classes.Enums;
+using Classes.UnityExtensions;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -18,9 +19,12 @@ public class PlotScript : MonoBehaviour
     
     private Color _normalPlotColor;
     
+    private Collider2D _collider2D;
+    
     // Events
     private void Start()
     {
+        _collider2D = GetComponent<Collider2D>();
         _normalPlotColor = spriteRenderer.color;
         
         var randomFloat = Random.Range(0.0f, 100.0f);
@@ -33,6 +37,11 @@ public class PlotScript : MonoBehaviour
 
     private void Update()
     {
+        if (RaycastInput.IsLMBDownColliding(_collider2D))
+        {
+            UserInput();
+        }
+
         if (!isWatered) return;
 
         spriteRenderer.color = Color.Lerp(wateredPlotColor, _normalPlotColor, currentWateredTime/wateredTime);
@@ -43,25 +52,26 @@ public class PlotScript : MonoBehaviour
         isWatered = false;
         spriteRenderer.color = _normalPlotColor;
     }
-
-    private void OnMouseDown()
+    
+    // Custom methods
+    private void UserInput()
     {
         var gh = GameHandler.Instance;
-        
+
         if (gh.currentTool.type == ToolType.Watering)
         {
             Water();
             return;
         }
-        
+
         if (gh.currentTool.type != ToolType.Seeds) return;
-        
+
         if (currentPlant != null)
         {
             Debug.Log("There's something planted already!");
             return;
         }
-            
+    
         var foundPlant = gh.allPlants.Find(plant => plant.name == gh.currentTool.name);
 
         if (foundPlant == null)
@@ -69,11 +79,10 @@ public class PlotScript : MonoBehaviour
             Debug.LogWarning("Invalid seed!");
             return;
         }
-            
+    
         currentPlant = Instantiate(foundPlant, transform);
     }
     
-    // Custom methods
     private void Water()
     {
         isWatered = true;
