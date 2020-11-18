@@ -122,7 +122,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da70b3444ab05d34e898ff6fdbd58bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allPlants:
+  - {fileID: 2840452342629946340, guid: ae6e08e9c2bb70ad8a5584c23a1adf33, type: 3}
+  - {fileID: 2840452342629946340, guid: fce5c690a85390294b503c648afd190e, type: 3}
   currentPlant: {fileID: 0}
+  weedPlant: {fileID: 2840452342629946340, guid: 472a366e2154b667296bead998106bb0, type: 3}
   weedPlantProbability: 50
   spriteRenderer: {fileID: 5903903204112654706}
   wateredPlotColor: {r: 0.7019608, g: 0.49411765, b: 0.30980393, a: 1}
