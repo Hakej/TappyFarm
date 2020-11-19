@@ -7,7 +7,7 @@ public class SeedsInventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var allPlants = GameHandler.Instance.allPlants;
+        var allPlants = GameManager.Instance.allPlants;
 
         if (allPlants.Count == 0) return;
 

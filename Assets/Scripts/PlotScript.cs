@@ -1,4 +1,5 @@
-﻿using Classes.Enums;
+﻿using System;
+using Classes.Enums;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -21,13 +22,19 @@ public class PlotScript : MonoBehaviour
     // Events
     private void Start()
     {
+        EventManager.Instance.onLeftClickDown += OnLeftClickDown;
+        
         _normalPlotColor = spriteRenderer.color;
         
-        var randomFloat = Random.Range(0.0f, 100.0f);
+        var weedPlantChance = Random.Range(0.0f, 100.0f);
+        if (weedPlantProbability < weedPlantChance) return;
+        Plant(GameManager.Instance.weedPlant);
+    }
 
-        if (weedPlantProbability < randomFloat) return;
-        
-        Plant(GameHandler.Instance.weedPlant);
+    private void OnDestroy()
+    {
+        if (EventManager.Instance == null) return;
+        EventManager.Instance.onLeftClickDown -= OnLeftClickDown;
     }
 
     private void Update()
@@ -43,9 +50,11 @@ public class PlotScript : MonoBehaviour
         spriteRenderer.color = _normalPlotColor;
     }
 
-    private void OnMouseDown()
+    private void OnLeftClickDown(Transform hitTransform)
     {
-        var gh = GameHandler.Instance;
+        if (hitTransform != transform) return;
+        
+        var gh = GameManager.Instance;
         
         if (gh.currentTool.type == ToolType.Watering)
         {

@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using Classes;
-using UnityEditorInternal;
 using UnityEngine;
 
-public class GameHandler : Singleton<GameHandler>
+public class GameManager : Singleton<GameManager>
 {
     public Tool currentTool = new Tool();
     public List<GameObject> allPlants;

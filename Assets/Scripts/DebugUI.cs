@@ -7,7 +7,7 @@ public class DebugUI : MonoBehaviour
     
     private void Update()
     {
-        var gh = GameHandler.Instance;
+        var gh = GameManager.Instance;
         
         textMesh.text = $"Current tool: {gh.currentTool.name}\n" +
                         $"Current tool type: {gh.currentTool.type}";

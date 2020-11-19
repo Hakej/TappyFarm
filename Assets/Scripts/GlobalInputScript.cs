@@ -7,7 +7,7 @@ public class GlobalInputScript : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            GameHandler.Instance.ClearCurrentTool();
+            GameManager.Instance.ClearCurrentTool();
         }
     }
 }

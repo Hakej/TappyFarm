@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlantScript : MonoBehaviour
@@ -17,10 +18,20 @@ public class PlantScript : MonoBehaviour
     // Events
     private void Start()
     {
+        EventManager.Instance.onLeftClickDown += OnLeftClickDown;
+        
         _plotScript = GetComponentInParent<PlotScript>();
         
         _currentScale = new Vector2(0.0f, 0.0f);
         _grownScale = transform.localScale;
+
+        transform.localScale = _currentScale;
+    }
+
+    private void OnDestroy()
+    {
+        if (EventManager.Instance == null) return;
+        EventManager.Instance.onLeftClickDown -= OnLeftClickDown;
     }
 
     private void Update()
@@ -38,8 +49,10 @@ public class PlantScript : MonoBehaviour
         Grow();
     }
     
-    private void OnMouseDown()
+    private void OnLeftClickDown(Transform hitTransform)
     {
+        if (hitTransform != transform) return;
+        
         if (!_isGrown) return;
         
         Gather();

@@ -7,6 +7,6 @@ public class ToolsInventory : MonoBehaviour
     
     private void OnMouseDown()
     {
-        GameHandler.Instance.currentTool = tool;
+        GameManager.Instance.currentTool = tool;
     }
 }
