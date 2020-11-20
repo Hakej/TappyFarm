@@ -7,7 +7,7 @@ public class PlantScript : MonoBehaviour
     
     private PlotScript _plotScript;
 
-    private Vector2 _currentScale;
+    private Vector2 _startingScale;
     private Vector2 _grownScale;
         
     private SpriteRenderer _spriteRenderer;
@@ -20,13 +20,15 @@ public class PlantScript : MonoBehaviour
         _plotScript = GetComponentInParent<PlotScript>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
-        plant.grownSprite = _spriteRenderer.sprite;
-        _spriteRenderer.sprite = plant.growingSprite;
-        
-        _currentScale = new Vector2(0.0f, 0.0f);
         _grownScale = transform.localScale;
+        plant.grownSprite = _spriteRenderer.sprite;
 
-        transform.localScale = _currentScale;
+        if (plant.isGrown) return;
+        
+        _spriteRenderer.sprite = plant.growingSprite;
+            
+        _startingScale = new Vector2(0.0f, 0.0f);
+        transform.localScale = _startingScale;
     }
 
     private void OnDestroy()
@@ -39,7 +41,7 @@ public class PlantScript : MonoBehaviour
     {
         if (plant.isGrown) return;
 
-        transform.localScale = Vector2.Lerp(_currentScale, _grownScale, plant.currentGrowTime / plant.growTime);
+        transform.localScale = Vector2.Lerp(_startingScale, _grownScale, plant.currentGrowTime / plant.growTime);
         
         if (!_plotScript.isWatered) return;
         
@@ -55,6 +57,8 @@ public class PlantScript : MonoBehaviour
         if (hitTransform != transform) return;
         
         if (!plant.isGrown) return;
+
+        if (GameManager.Instance.currentTool.type != plant.gatheringTool) return;
         
         Gather();
     }

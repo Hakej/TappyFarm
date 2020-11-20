@@ -1,4 +1,5 @@
 using System;
+using Classes.Enums;
 using UnityEngine;
 
 namespace Classes
@@ -10,6 +11,8 @@ namespace Classes
         public float currentGrowTime;
 
         public bool isGrown;
+
+        public ToolType gatheringTool;
         
         [HideInInspector]
         public Sprite grownSprite;
