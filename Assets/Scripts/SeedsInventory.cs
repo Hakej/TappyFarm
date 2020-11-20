@@ -1,5 +1,6 @@
 ﻿using Classes;
 using Classes.Enums;
+using Classes.Extensions;
 using UnityEngine;
 
 public class SeedsInventory : MonoBehaviour
@@ -10,10 +11,10 @@ public class SeedsInventory : MonoBehaviour
         var allPlants = GameManager.Instance.allPlants;
 
         if (allPlants.Count == 0) return;
-
-        var index = 0;
+        
         var stepX = 0.4f;
         var minX = -(stepX/2) * (allPlants.Count - 1);
+        var currentX = minX;
         
         foreach (var plant in allPlants)
         {
@@ -25,7 +26,7 @@ public class SeedsInventory : MonoBehaviour
             seedSpriteRenderer.sortingLayerName = "UI";
 
             seed.name = plant.name;
-            seed.transform.localPosition = new Vector3(minX + stepX * index, -0.2f);
+            seed.transform.localPosition = new Vector3(currentX, -0.2f);
             seed.transform.localScale = new Vector3(0.2f, 0.2f);
             
             var seedToolsInventory = seed.AddComponent<ToolsInventory>();
@@ -33,7 +34,7 @@ public class SeedsInventory : MonoBehaviour
             
             Destroy(seedPlantScript);
 
-            index++;
+            currentX += stepX;
         }
     }
 }

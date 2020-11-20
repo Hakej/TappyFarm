@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Classes.UnityExtensions
+namespace Classes.Extensions
 {
     public static class UnityEngineExtensions
     {
