@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 1979626233
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 788e9ae237704af46999a500402468e2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 93c000d9e57229845a626eaf20def241, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -127,9 +127,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dbd064993974b0b9db2514f482f91d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  growTime: 5
-  spriteRenderer: {fileID: 1662111725199519136}
-  grownSprite: {fileID: 21300000, guid: 93c000d9e57229845a626eaf20def241, type: 3}
+  plant:
+    growTime: 10
+    currentGrowTime: 0
+    isGrown: 0
+    grownSprite: {fileID: 0}
+    growingSprite: {fileID: 21300000, guid: 788e9ae237704af46999a500402468e2, type: 3}
 --- !u!61 &5525885518545750170
 BoxCollider2D:
   m_ObjectHideFlags: 0

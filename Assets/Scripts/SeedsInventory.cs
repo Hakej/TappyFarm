@@ -20,8 +20,7 @@ public class SeedsInventory : MonoBehaviour
             var seed = Instantiate(plant, transform);
             var seedSpriteRenderer = seed.GetComponentInChildren<SpriteRenderer>();
             var seedPlantScript = seed.GetComponent<PlantScript>();
-
-            seedSpriteRenderer.sprite = seedPlantScript.grownSprite;
+            
             seedSpriteRenderer.sortingOrder = 1;
             seedSpriteRenderer.sortingLayerName = "UI";
 

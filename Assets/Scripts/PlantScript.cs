@@ -1,19 +1,16 @@
-using System;
+using Classes;
 using UnityEngine;
 
 public class PlantScript : MonoBehaviour
 {
-    public float growTime = 5.0f;
-    public SpriteRenderer spriteRenderer;
-    public Sprite grownSprite;
+    public Plant plant;
     
     private PlotScript _plotScript;
-    
-    private bool _isGrown = false;
-    private float _currentGrowTime = 0.0f;
 
     private Vector2 _currentScale;
     private Vector2 _grownScale;
+        
+    private SpriteRenderer _spriteRenderer;
     
     // Events
     private void Start()
@@ -21,6 +18,10 @@ public class PlantScript : MonoBehaviour
         EventManager.Instance.onLeftClickDown += OnLeftClickDown;
         
         _plotScript = GetComponentInParent<PlotScript>();
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
+        plant.grownSprite = _spriteRenderer.sprite;
+        _spriteRenderer.sprite = plant.growingSprite;
         
         _currentScale = new Vector2(0.0f, 0.0f);
         _grownScale = transform.localScale;
@@ -36,16 +37,16 @@ public class PlantScript : MonoBehaviour
 
     private void Update()
     {
-        if (_isGrown) return;
+        if (plant.isGrown) return;
 
-        transform.localScale = Vector2.Lerp(_currentScale, _grownScale, _currentGrowTime / growTime);
+        transform.localScale = Vector2.Lerp(_currentScale, _grownScale, plant.currentGrowTime / plant.growTime);
         
         if (!_plotScript.isWatered) return;
         
-        _currentGrowTime += Time.deltaTime;
+        plant.currentGrowTime += Time.deltaTime;
         
-        if (_currentGrowTime < growTime) return;
-        
+        if (plant.currentGrowTime < plant.growTime) return;
+
         Grow();
     }
     
@@ -53,17 +54,15 @@ public class PlantScript : MonoBehaviour
     {
         if (hitTransform != transform) return;
         
-        if (!_isGrown) return;
+        if (!plant.isGrown) return;
         
         Gather();
     }
 
-
-    // Custom methods
     private void Grow()
     {
-        _isGrown = true;
-        spriteRenderer.sprite = grownSprite;
+        plant.isGrown = true;
+        _spriteRenderer.sprite = plant.grownSprite;
     }
     
     private void Gather()

@@ -127,9 +127,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dbd064993974b0b9db2514f482f91d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  growTime: 20
-  spriteRenderer: {fileID: 1662111725199519136}
-  grownSprite: {fileID: 21300000, guid: 89142d4ba160d6e41b022b881d1e0640, type: 3}
+  plant:
+    growTime: 20
+    currentGrowTime: 0
+    isGrown: 0
+    grownSprite: {fileID: 0}
+    growingSprite: {fileID: 21300000, guid: 89142d4ba160d6e41b022b881d1e0640, type: 3}
 --- !u!61 &5525885518545750170
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -143,7 +146,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.012091666, y: 0.6803778}
+  m_Offset: {x: -0.012091637, y: 0.3229038}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -154,5 +157,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3177075, y: 0.8428019}
+  m_Size: {x: 1.3177075, y: 0.8583442}
   m_EdgeRadius: 0

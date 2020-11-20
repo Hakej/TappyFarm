@@ -127,9 +127,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dbd064993974b0b9db2514f482f91d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  growTime: 10
-  spriteRenderer: {fileID: 1662111725199519136}
-  grownSprite: {fileID: 21300000, guid: 6ed535bae8383e142b99af54ceb3b0fb, type: 3}
+  plant:
+    growTime: 10
+    currentGrowTime: 0
+    isGrown: 0
+    grownSprite: {fileID: 0}
+    growingSprite: {fileID: 21300000, guid: 6ed535bae8383e142b99af54ceb3b0fb, type: 3}
 --- !u!61 &5525885518545750170
 BoxCollider2D:
   m_ObjectHideFlags: 0
