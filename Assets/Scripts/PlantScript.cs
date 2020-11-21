@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlantScript : MonoBehaviour
 {
     public Plant plant;
+    public ParticleSystem particleSystem;
     
     private PlotScript _plotScript;
 
@@ -67,6 +68,7 @@ public class PlantScript : MonoBehaviour
     {
         plant.isGrown = true;
         _spriteRenderer.sprite = plant.grownSprite;
+        particleSystem.Play();
     }
     
     private void Gather()
